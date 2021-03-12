@@ -1,7 +1,6 @@
 
 defmodule ReportsGenerator.Parser do
-
-  def build(filename) do
+  def parse_file(filename) do
     "reports/#{filename}"
     |>File.stream!()
     |>Stream.map(fn line -> parse_line(line) end)
