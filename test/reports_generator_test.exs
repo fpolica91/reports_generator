@@ -35,6 +35,14 @@ defmodule ReportsGeneratorTest do
       assert response == expected_response
     end
   end
+  describe "build_from_many/1" do
+    test "builds the report from a list" do
+      files = ["report_1.csv", "report_2.csv", "report_3.csv"]
+      expected_result = %{"foods" => %{"açaí" => 37742, "churrasco" => 37650, "esfirra" => 37462, "hambúrguer" => 37577, "pastel" => 37392, "pizza" => 37365, "prato_feito" => 37519, "sushi" => 37293}, "users" => %{"1" => 278849, "10" => 268317, "11" => 268877, "12" => 276306, "13" => 282953, "14" => 277084, "15" => 280105, "16" => 271831, "17" => 272883, "18" => 271421, "19" => 277720, "2" => 271031, "20" => 273446, "21" => 275026, "22" => 278025, "23" => 276523, "24" => 274481, "25" => 274512, "26" => 274199, "27" => 278001, "28" => 274256, "29" => 273030, "3" => 272250, "30" => 275978, "4" => 277054, "5" => 270926, "6" => 272053, "7" => 273112, "8" => 275161, "9" => 274003}}
+      result = files |> ReportsGenerator.build_from_many()
+      assert result == expected_result
+    end
+  end
 
   test "greets the world" do
     assert ReportsGenerator.hello() == :world
